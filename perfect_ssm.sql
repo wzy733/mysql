@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQL
+Source Server         : mysql
 Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : perfect_ssm
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-10-14 23:24:16
+Date: 2018-10-15 17:37:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -97,7 +97,7 @@ CREATE TABLE `qf_course` (
   `is_not_paper` int(2) NOT NULL DEFAULT '0',
   `course_img` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_course
@@ -105,6 +105,7 @@ CREATE TABLE `qf_course` (
 INSERT INTO `qf_course` VALUES ('7', '英语1', '英语1', '17', 'CATE706312', '1', '2018-07-02 09:43:21', 'admin', '2018-09-05 11:10:32', 'admin', '0', 'http://192.168.31.61:8080/images//sws_xcx/user/1536043851797237671833132.jpg');
 INSERT INTO `qf_course` VALUES ('8', '测试课程1', '我是课程1', '4', 'CATE580923', '1', '2018-09-04 15:00:25', 'admin', '2018-09-05 11:10:43', 'admin', '0', 'http://192.168.31.61:8080/images//sws_xcx/user/1536044413712237671833132.jpg');
 INSERT INTO `qf_course` VALUES ('9', 'java', 'qq', '4', 'CATE706312', '1', '2018-10-11 20:50:41', 'admin', null, null, '1', 'courseImg/1.png');
+INSERT INTO `qf_course` VALUES ('11', '1', '1', '4', '1', '1', '2018-10-15 15:46:59', 'admin', null, null, '0', 'courseImg/2.jpg');
 
 -- ----------------------------
 -- Table structure for qf_course_extend_data
@@ -321,6 +322,26 @@ INSERT INTO `qf_question_answer` VALUES ('47', '25', '<p>adasd</p>', '0', '4');
 INSERT INTO `qf_question_answer` VALUES ('48', '26', '<p>123123123</p>', '0', '0');
 
 -- ----------------------------
+-- Table structure for qf_question_bank
+-- ----------------------------
+DROP TABLE IF EXISTS `qf_question_bank`;
+CREATE TABLE `qf_question_bank` (
+  `id` int(11) NOT NULL,
+  `bank_id` varchar(20) DEFAULT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `bdescription` varchar(255) DEFAULT NULL,
+  `course_id` int(11) DEFAULT NULL,
+  `question_num` int(11) DEFAULT NULL,
+  `visit_num` int(11) DEFAULT NULL COMMENT '访问次数',
+  `buy_num` int(11) NOT NULL COMMENT '购买次数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qf_question_bank
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for qf_question_type
 -- ----------------------------
 DROP TABLE IF EXISTS `qf_question_type`;
@@ -476,7 +497,7 @@ CREATE TABLE `sys_menu` (
   `update_by` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `t_order` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -500,6 +521,7 @@ INSERT INTO `sys_menu` VALUES ('17', '1', '11', '订单管理', 'icon-wenzhangs'
 INSERT INTO `sys_menu` VALUES ('18', '1', '15', '章节管理', 'icon-order', 'qf/chapter/list', '章节管理', '章节管理', '2018-10-13 14:16:32.159000', 'admin', '2018-10-13 14:16:32.159000', null, '15');
 INSERT INTO `sys_menu` VALUES ('19', '0', '0', '题目管理', 'icon-order', null, '题目管理', '题目管理父目录', '2018-10-14 11:35:29.000000', 'admin', '2018-10-14 21:35:58.000000', null, '20');
 INSERT INTO `sys_menu` VALUES ('20', '1', '19', '题目类型管理', 'icon-order', 'qf/qutype/list', '题目类型管理', '题目类型管理', '2018-10-14 21:37:53.556000', 'admin', '2018-10-14 21:37:53.556000', null, '21');
+INSERT INTO `sys_menu` VALUES ('21', '1', '15', '试卷管理', 'icon-order', 'qf/paper/list', '试卷管理', '试卷管理', '2018-10-15 15:26:45.480000', 'admin', '2018-10-15 15:26:45.480000', null, '15');
 
 -- ----------------------------
 -- Table structure for sys_role
