@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-10-15 17:37:13
+Date: 2018-10-16 17:33:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -68,7 +68,7 @@ CREATE TABLE `qf_chapter` (
   `update_by` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `function_type` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of qf_chapter
@@ -223,13 +223,14 @@ CREATE TABLE `qf_paper` (
   `question_number` int(11) NOT NULL DEFAULT '0',
   `is_del` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_paper
 -- ----------------------------
 INSERT INTO `qf_paper` VALUES ('1', '2018-09-05 16:05:55', 'admin', null, null, '7', '0', '我是试卷', '90', '100', '0', '0', '1');
-INSERT INTO `qf_paper` VALUES ('2', '2018-09-05 16:06:22', 'admin', '2018-09-05 16:26:29', 'admin', '7', '0', '我是试卷2', '120', '150', '0', '0', '1');
+INSERT INTO `qf_paper` VALUES ('2', '2018-09-05 16:06:22', 'admin', '2018-10-16 14:42:39', 'admin', '9', '0', '我是试卷2', '120', '150', '150', '23', '1');
+INSERT INTO `qf_paper` VALUES ('3', '2018-10-16 11:08:51', 'admin', '2018-10-16 11:09:06', 'admin', '9', '0', 'qwe', '90', '120', '120', '22', '1');
 
 -- ----------------------------
 -- Table structure for qf_question
@@ -276,7 +277,7 @@ CREATE TABLE `qf_question_analysis` (
   `question_id` int(11) NOT NULL,
   `analysis` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_question_analysis
@@ -286,6 +287,7 @@ INSERT INTO `qf_question_analysis` VALUES ('6', '15', '<p>补全短文解析</p>
 INSERT INTO `qf_question_analysis` VALUES ('7', '17', '<p>asdasd</p>');
 INSERT INTO `qf_question_analysis` VALUES ('10', '19', '<p>adasdaa</p>');
 INSERT INTO `qf_question_analysis` VALUES ('11', '26', '<p>13131231</p>');
+INSERT INTO `qf_question_analysis` VALUES ('12', '24', '<p>44004</p>');
 
 -- ----------------------------
 -- Table structure for qf_question_answer
@@ -298,7 +300,7 @@ CREATE TABLE `qf_question_answer` (
   `correct` tinyint(4) NOT NULL,
   `order` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_question_answer
@@ -320,6 +322,7 @@ INSERT INTO `qf_question_answer` VALUES ('45', '25', '<p>adasd</p>', '1', '2');
 INSERT INTO `qf_question_answer` VALUES ('46', '25', '<p>adasd</p>', '0', '3');
 INSERT INTO `qf_question_answer` VALUES ('47', '25', '<p>adasd</p>', '0', '4');
 INSERT INTO `qf_question_answer` VALUES ('48', '26', '<p>123123123</p>', '0', '0');
+INSERT INTO `qf_question_answer` VALUES ('49', '26', '14414', '0', '0');
 
 -- ----------------------------
 -- Table structure for qf_question_bank
@@ -350,7 +353,7 @@ CREATE TABLE `qf_question_type` (
   `type_name` varchar(10) NOT NULL,
   `depiction` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_question_type
@@ -497,7 +500,7 @@ CREATE TABLE `sys_menu` (
   `update_by` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `t_order` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -522,6 +525,8 @@ INSERT INTO `sys_menu` VALUES ('18', '1', '15', '章节管理', 'icon-order', 'q
 INSERT INTO `sys_menu` VALUES ('19', '0', '0', '题目管理', 'icon-order', null, '题目管理', '题目管理父目录', '2018-10-14 11:35:29.000000', 'admin', '2018-10-14 21:35:58.000000', null, '20');
 INSERT INTO `sys_menu` VALUES ('20', '1', '19', '题目类型管理', 'icon-order', 'qf/qutype/list', '题目类型管理', '题目类型管理', '2018-10-14 21:37:53.556000', 'admin', '2018-10-14 21:37:53.556000', null, '21');
 INSERT INTO `sys_menu` VALUES ('21', '1', '15', '试卷管理', 'icon-order', 'qf/paper/list', '试卷管理', '试卷管理', '2018-10-15 15:26:45.480000', 'admin', '2018-10-15 15:26:45.480000', null, '15');
+INSERT INTO `sys_menu` VALUES ('22', '1', '19', '题目解析管理', 'icon-order', 'qf/analysis/list', '题目解析管理', '题目解析管理', '2018-10-16 15:58:32.097000', 'admin', '2018-10-16 15:58:32.097000', null, '22');
+INSERT INTO `sys_menu` VALUES ('23', '1', '19', '题目答案管理', 'icon-order', 'qf/answer/list', '题目答案管理', '题目答案管理', '2018-10-16 17:31:38.592000', 'admin', '2018-10-16 17:31:38.592000', null, '23');
 
 -- ----------------------------
 -- Table structure for sys_role
