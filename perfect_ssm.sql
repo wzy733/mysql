@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysql
+Source Server         : MySQL
 Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : perfect_ssm
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-10-16 17:33:39
+Date: 2018-10-25 20:54:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,19 +21,19 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `qf_category`;
 CREATE TABLE `qf_category` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(120) COLLATE utf8mb4_bin NOT NULL,
+  `category_name` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
   `description` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `parent_id` int(2) NOT NULL DEFAULT '0' COMMENT '默认没有为0',
-  `has_child` int(2) NOT NULL DEFAULT '0',
-  `tag` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  `level` int(2) NOT NULL DEFAULT '1',
-  `is_del` int(2) NOT NULL DEFAULT '0',
-  `create_time` datetime(6) NOT NULL,
-  `create_by` varchar(120) COLLATE utf8mb4_bin NOT NULL,
+  `parent_id` int(2) DEFAULT '0' COMMENT '默认没有为0',
+  `has_child` int(2) DEFAULT '0',
+  `tag` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `level` int(2) DEFAULT '1',
+  `is_del` int(2) DEFAULT '0',
+  `create_time` datetime(6) DEFAULT NULL,
+  `create_by` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
   `update_time` datetime(6) DEFAULT NULL,
   `update_by` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of qf_category
@@ -42,10 +42,14 @@ INSERT INTO `qf_category` VALUES ('3', '金融', '金融大类', '0', '1', 'CATE
 INSERT INTO `qf_category` VALUES ('4', '计算机', '计算机', '0', '1', 'CATE973501', '1', '0', '2018-06-26 13:30:02.226000', 'admin', '2018-06-26 15:33:45.012000', 'admin');
 INSERT INTO `qf_category` VALUES ('5', '考研', '考研项目', '0', '1', 'CATE726094', '1', '0', '2018-06-26 15:33:26.821000', 'admin', null, 'admin');
 INSERT INTO `qf_category` VALUES ('15', '考研英语一', '考研英语一', '5', '1', 'CATE150236', '2', '0', '2018-06-27 16:54:45.626000', 'admin', null, 'admin');
-INSERT INTO `qf_category` VALUES ('16', '英语1', '英语1', '15', '0', 'CATE645978', '3', '0', '2018-06-27 16:54:53.950000', 'admin', null, null);
-INSERT INTO `qf_category` VALUES ('17', '英语2', '英语2', '15', '0', 'CATE917046', '3', '0', '2018-06-27 16:55:07.795000', 'admin', null, null);
-INSERT INTO `qf_category` VALUES ('18', '英语3', '英语3', '15', '0', 'CATE187623', '3', '0', '2018-06-27 16:55:14.491000', 'admin', null, null);
-INSERT INTO `qf_category` VALUES ('19', '英语4', '英语4', '15', '0', 'CATE978061', '3', '0', '2018-06-27 16:55:25.765000', 'admin', null, null);
+INSERT INTO `qf_category` VALUES ('16', '会计', '会计', '3', '1', 'CATE645978', '2', '0', '2018-06-27 16:54:53.950000', 'admin', null, null);
+INSERT INTO `qf_category` VALUES ('17', '软件', '软件', '4', '1', 'CATE917046', '2', '0', '2018-06-27 16:55:07.795000', 'admin', null, null);
+INSERT INTO `qf_category` VALUES ('18', '嵌入', '嵌入', '4', '1', 'CATE187623', '2', '0', '2018-06-27 16:55:14.491000', 'admin', null, null);
+INSERT INTO `qf_category` VALUES ('19', '考研英语二', '考研英语二', '5', '1', 'CATE978061', '2', '0', '2018-06-27 16:55:25.765000', 'admin', null, null);
+INSERT INTO `qf_category` VALUES ('20', '初级会计', '初级会计', '16', '0', 'CATE314110', '3', '0', '2018-10-24 07:30:08.000000', 'admin', '2018-10-25 09:30:22.000000', 'admin');
+INSERT INTO `qf_category` VALUES ('21', '软件工程师', '软件工程师', '17', '0', 'CATE314410', '3', '0', '2018-10-24 09:31:50.000000', 'admin', null, null);
+INSERT INTO `qf_category` VALUES ('22', '英语一', '英语一', '15', '0', 'CATE554101', '3', '0', '2018-10-25 09:34:02.000000', 'admin', null, null);
+INSERT INTO `qf_category` VALUES ('23', '英语二', '英语二', '19', '0', 'CATE258010', '3', '0', '2018-10-25 09:34:11.000000', 'admin', null, null);
 
 -- ----------------------------
 -- Table structure for qf_chapter
@@ -97,15 +101,17 @@ CREATE TABLE `qf_course` (
   `is_not_paper` int(2) NOT NULL DEFAULT '0',
   `course_img` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_course
 -- ----------------------------
-INSERT INTO `qf_course` VALUES ('7', '英语1', '英语1', '17', 'CATE706312', '1', '2018-07-02 09:43:21', 'admin', '2018-09-05 11:10:32', 'admin', '0', 'http://192.168.31.61:8080/images//sws_xcx/user/1536043851797237671833132.jpg');
-INSERT INTO `qf_course` VALUES ('8', '测试课程1', '我是课程1', '4', 'CATE580923', '1', '2018-09-04 15:00:25', 'admin', '2018-09-05 11:10:43', 'admin', '0', 'http://192.168.31.61:8080/images//sws_xcx/user/1536044413712237671833132.jpg');
-INSERT INTO `qf_course` VALUES ('9', 'java', 'qq', '4', 'CATE706312', '1', '2018-10-11 20:50:41', 'admin', null, null, '1', 'courseImg/1.png');
-INSERT INTO `qf_course` VALUES ('11', '1', '1', '4', '1', '1', '2018-10-15 15:46:59', 'admin', null, null, '0', 'courseImg/2.jpg');
+INSERT INTO `qf_course` VALUES ('7', '英语1', '英语1', '22', 'CATE706312', '1', '2018-07-02 09:43:21', 'admin', '2018-09-05 11:10:32', 'admin', '0', 'http://192.168.31.61:8080/images//sws_xcx/user/15360438courseImg/1.png');
+INSERT INTO `qf_course` VALUES ('8', '测试课程1', '我是课程1', '20', 'CATE580923', '1', '2018-09-04 15:00:25', 'admin', '2018-09-05 11:10:43', 'admin', '0', 'courseImg/1.png');
+INSERT INTO `qf_course` VALUES ('9', 'java', 'qq', '21', 'CATE706312', '1', '2018-10-11 20:50:41', 'admin', null, null, '1', 'courseImg/1.png');
+INSERT INTO `qf_course` VALUES ('11', '1', '1', '18', '1', '1', '2018-10-15 15:46:59', 'admin', null, null, '0', 'courseImg/2.jpg');
+INSERT INTO `qf_course` VALUES ('12', '数据库', '我是课程1024', '21', 'CATE580959', '1', '2018-10-22 14:44:26', 'admin', null, null, '0', 'courseImg/6.png');
+INSERT INTO `qf_course` VALUES ('13', '2', '2', '19', 'CATE222222', '0', '2018-10-25 09:36:51', 'admin', null, null, '0', '');
 
 -- ----------------------------
 -- Table structure for qf_course_extend_data
@@ -150,12 +156,15 @@ CREATE TABLE `qf_goods` (
   `goods_img` varchar(255) COLLATE utf8mb4_bin NOT NULL,
   `detail` varchar(100) COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of qf_goods
 -- ----------------------------
-INSERT INTO `qf_goods` VALUES ('1', '17', '7', '我是商品哈', '1245', '30', '180', '0', '0', '1', '2018-09-04 16:55:59', 'admin', '2018-09-04 17:53:46', 'admin', '4654d65asd', 'http://192.168.31.61:8080/images//sws_xcx/user/153605135410412632424_132215178296_2.jpg', '3');
+INSERT INTO `qf_goods` VALUES ('1', '17', '7', '我是商品哈', '1245', '30', '180', '0', '0', '1', '2018-09-04 16:55:59', 'admin', '2018-09-04 17:53:46', 'admin', '4654d65asd', 'courseImg/1.png', '3');
+INSERT INTO `qf_goods` VALUES ('2', '21', '9', 'Java1', '12352', '1234', '200', '0', '0', '0', '2018-10-25 20:15:51', 'admin', null, null, 'java视频', 'courseImg/1.png', '1');
+INSERT INTO `qf_goods` VALUES ('3', '21', '9', 'Java2', '12352', '2234', '200', '0', '0', '0', '2018-10-25 20:16:55', 'aadmin', null, null, 'java视频+练习', 'courseImg/1.png', '1,2');
+INSERT INTO `qf_goods` VALUES ('4', '21', '12', '数据库', '12350', '1500', '200', '0', '0', '0', '2018-10-25 20:18:40', 'admin', null, null, '数据库视频', 'courseImg/5.png', '1');
 
 -- ----------------------------
 -- Table structure for qf_goods_detail
@@ -165,13 +174,14 @@ CREATE TABLE `qf_goods_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `goods_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of qf_goods_detail
 -- ----------------------------
+INSERT INTO `qf_goods_detail` VALUES ('1', '1', '9', null);
 
 -- ----------------------------
 -- Table structure for qf_order
@@ -185,7 +195,7 @@ CREATE TABLE `qf_order` (
   `good_price` decimal(18,0) NOT NULL COMMENT '商品价格',
   `good_number` int(6) NOT NULL DEFAULT '0' COMMENT '商品数量',
   `status` int(6) NOT NULL COMMENT '订单状态',
-  `create_status` int(6) NOT NULL,
+  `create_status` int(6) NOT NULL COMMENT '订单创建类型(用户购买创建、兑换码、客服开通)',
   `order_creater_id` int(10) NOT NULL COMMENT '创建人ID',
   `order_creater_uuid` varchar(180) COLLATE utf8_bin NOT NULL COMMENT '创建人UUID',
   `manufacturer` varchar(180) COLLATE utf8_bin DEFAULT '' COMMENT '厂商',
@@ -223,7 +233,7 @@ CREATE TABLE `qf_paper` (
   `question_number` int(11) NOT NULL DEFAULT '0',
   `is_del` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_paper
@@ -231,6 +241,22 @@ CREATE TABLE `qf_paper` (
 INSERT INTO `qf_paper` VALUES ('1', '2018-09-05 16:05:55', 'admin', null, null, '7', '0', '我是试卷', '90', '100', '0', '0', '1');
 INSERT INTO `qf_paper` VALUES ('2', '2018-09-05 16:06:22', 'admin', '2018-10-16 14:42:39', 'admin', '9', '0', '我是试卷2', '120', '150', '150', '23', '1');
 INSERT INTO `qf_paper` VALUES ('3', '2018-10-16 11:08:51', 'admin', '2018-10-16 11:09:06', 'admin', '9', '0', 'qwe', '90', '120', '120', '22', '1');
+
+-- ----------------------------
+-- Table structure for qf_paper_question
+-- ----------------------------
+DROP TABLE IF EXISTS `qf_paper_question`;
+CREATE TABLE `qf_paper_question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `paper_id` int(11) DEFAULT NULL,
+  `question_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qf_paper_question
+-- ----------------------------
+INSERT INTO `qf_paper_question` VALUES ('1', '1', '14');
 
 -- ----------------------------
 -- Table structure for qf_question
@@ -262,7 +288,7 @@ INSERT INTO `qf_question` VALUES ('14', '2018-08-10 11:13:44.754000', 'admin', n
 INSERT INTO `qf_question` VALUES ('15', '2018-08-10 11:17:47.826000', 'admin', null, null, '0', '0', '0', '5', '<p>补全短文题目</p>', '0', '0', '0', '0', '1');
 INSERT INTO `qf_question` VALUES ('16', '2018-08-15 17:09:45.116000', 'admin', '2018-08-15 17:10:07.000000', 'admin', '0', '0', '0', '1', '<p>-08-15T17:09:02+08:</p>', '0', '0', '0', '0', '1');
 INSERT INTO `qf_question` VALUES ('17', '2018-08-16 09:48:22.292000', 'admin', null, null, '13', '0', '0', '2', '<p>wewe46546546546546464665456464646546546565465465456464646546464654666456464646465121212121212121212121212</p>', '0', '0', '0', '0', '1');
-INSERT INTO `qf_question` VALUES ('18', '2018-08-16 11:10:56.616000', 'admin', null, null, '13', '0', '0', '3', '<p>ssfsfsdf</p>', '0', '0', '0', '1', '1');
+INSERT INTO `qf_question` VALUES ('18', '2018-08-16 11:10:56.616000', 'admin', null, null, '12', '0', '0', '3', '<p>ssfsfsdf</p>', '0', '0', '0', '1', '1');
 INSERT INTO `qf_question` VALUES ('19', '2018-08-16 11:32:53.276000', 'admin', '2018-08-16 12:46:19.000000', 'admin', '13', '0', '0', '9', '<p>阅读理解</p>', '0', '0', '0', '0', '1');
 INSERT INTO `qf_question` VALUES ('24', '2018-08-16 12:46:19.414000', 'admin', null, null, '13', '19', '0', '1', '<p>adasd</p>', '0', '0', '3', '0', '1');
 INSERT INTO `qf_question` VALUES ('25', '2018-08-16 12:46:19.434000', 'admin', null, null, '13', '19', '0', '1', '<p>adasd</p>', '0', '0', '3', '0', '1');
@@ -277,7 +303,7 @@ CREATE TABLE `qf_question_analysis` (
   `question_id` int(11) NOT NULL,
   `analysis` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_question_analysis
@@ -300,7 +326,7 @@ CREATE TABLE `qf_question_answer` (
   `correct` tinyint(4) NOT NULL,
   `order` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qf_question_answer
@@ -322,7 +348,6 @@ INSERT INTO `qf_question_answer` VALUES ('45', '25', '<p>adasd</p>', '1', '2');
 INSERT INTO `qf_question_answer` VALUES ('46', '25', '<p>adasd</p>', '0', '3');
 INSERT INTO `qf_question_answer` VALUES ('47', '25', '<p>adasd</p>', '0', '4');
 INSERT INTO `qf_question_answer` VALUES ('48', '26', '<p>123123123</p>', '0', '0');
-INSERT INTO `qf_question_answer` VALUES ('49', '26', '14414', '0', '0');
 
 -- ----------------------------
 -- Table structure for qf_question_bank
@@ -375,31 +400,35 @@ INSERT INTO `qf_question_type` VALUES ('10', '完形填空', null);
 DROP TABLE IF EXISTS `qf_vcloud_video`;
 CREATE TABLE `qf_vcloud_video` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `chapter_id` int(10) NOT NULL,
-  `description` varchar(120) COLLATE utf8mb4_bin NOT NULL,
-  `vid` bigint(20) NOT NULL,
-  `orig_url` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  `download_orig_url` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  `status` int(10) NOT NULL,
-  `width` varchar(120) COLLATE utf8mb4_bin NOT NULL,
-  `height` varchar(120) COLLATE utf8mb4_bin NOT NULL,
-  `video_name` varchar(200) COLLATE utf8mb4_bin NOT NULL,
-  `type_name` varchar(200) COLLATE utf8mb4_bin NOT NULL,
-  `duration` int(10) NOT NULL,
+  `chapter_id` int(10) DEFAULT NULL,
+  `description` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
+  `vid` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
+  `orig_url` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `download_orig_url` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `status` int(10) DEFAULT NULL,
+  `width` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
+  `height` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
+  `video_name` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
+  `type_name` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
+  `duration` int(10) DEFAULT NULL,
   `snapshot_url` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
   `initial_size` bigint(20) DEFAULT NULL,
   `type_id` int(10) DEFAULT NULL,
   `duration_msec` int(10) DEFAULT NULL,
-  `create_time` datetime(6) NOT NULL,
-  `create_by` varchar(120) COLLATE utf8mb4_bin NOT NULL,
+  `create_time` datetime(6) DEFAULT NULL,
+  `create_by` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
   `update_time` datetime(6) DEFAULT NULL,
   `update_by` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of qf_vcloud_video
 -- ----------------------------
+INSERT INTO `qf_vcloud_video` VALUES ('2', '15', 'fds0222', '0', 'http://jechuang.com/53cd6e3d4bae42fe9cf2c676e0fcd00e/9335b9573f63484ebf70dcf6cf2575d9-234fd314681a3f0efd5c375a5ca12898-ld.m3u8', null, '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 'D:\\apache-tomcat-8.5.29\\webapps\\perfect-ssm\\videoImg\\1.jpg', '0', '0', '0', '2018-10-22 10:56:55.737000', 'admin', '2018-10-22 14:38:38.196000', 'admin');
+INSERT INTO `qf_vcloud_video` VALUES ('3', '16', '25', '0', 'http://jechuang.com/9fe78d0a70f34acb8aca8b2738b35d2a/6288284f62fd4d00bddd38f26fa858b1-52302a362eb59c7b7b6de48e23d936a4-ld.mp4', null, '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 'D:\\apache-tomcat-8.5.29\\webapps\\perfect-ssm\\videoImg\\1.jpg', '275794', '548050965', '0', '2018-10-22 11:23:56.208000', 'admin', null, null);
+INSERT INTO `qf_vcloud_video` VALUES ('4', '14', '54d5e', '0', 'http://jechuang.com/854219cd47e54dd3abdc1650d0453a03/847f7c7b95fd4d659ec8b50a40c4fae5-3221d0550b1bfd8e5e565dfb4141673c-ld.m3u8', null, '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 'D:\\apache-tomcat-8.5.29\\webapps\\perfect-ssm\\videoImg\\1.jpg', '303996', '548050965', '0', '2018-10-22 12:04:44.769000', 'admin', null, null);
+INSERT INTO `qf_vcloud_video` VALUES ('5', '12', 'tyuy', '0', 'http://jechuang.com/1971560e4dc94d2c85f0c808a1e52245/5919f5880b6e4478a51ebbb4837064a6-de74cfcbaa1cea3cdb96220641374301-ld.m3u8', null, '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 'http://jechuang.com/image/cover/0F5E4AE266BD4F1BBD01C715C249B6A8-6-2.png', '303808', '548050965', '0', '2018-10-22 12:16:01.159000', 'admin', null, null);
 
 -- ----------------------------
 -- Table structure for ssm_article
@@ -500,7 +529,7 @@ CREATE TABLE `sys_menu` (
   `update_by` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `t_order` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -527,6 +556,12 @@ INSERT INTO `sys_menu` VALUES ('20', '1', '19', '题目类型管理', 'icon-orde
 INSERT INTO `sys_menu` VALUES ('21', '1', '15', '试卷管理', 'icon-order', 'qf/paper/list', '试卷管理', '试卷管理', '2018-10-15 15:26:45.480000', 'admin', '2018-10-15 15:26:45.480000', null, '15');
 INSERT INTO `sys_menu` VALUES ('22', '1', '19', '题目解析管理', 'icon-order', 'qf/analysis/list', '题目解析管理', '题目解析管理', '2018-10-16 15:58:32.097000', 'admin', '2018-10-16 15:58:32.097000', null, '22');
 INSERT INTO `sys_menu` VALUES ('23', '1', '19', '题目答案管理', 'icon-order', 'qf/answer/list', '题目答案管理', '题目答案管理', '2018-10-16 17:31:38.592000', 'admin', '2018-10-16 17:31:38.592000', null, '23');
+INSERT INTO `sys_menu` VALUES ('24', '0', '0', '商品管理', 'icon-order', null, '商品管理', '商品管理父目录', '2018-10-17 11:02:07.000000', 'admin', '2018-10-18 11:02:16.000000', 'admin', '24');
+INSERT INTO `sys_menu` VALUES ('25', '1', '24', '商品管理', 'icon-order', 'qf/goods/list', '商品管理', '商品管理', '2018-10-18 11:03:16.773000', 'admin', '2018-10-18 11:04:35.245000', 'admin', '25');
+INSERT INTO `sys_menu` VALUES ('26', '1', '24', '商品详情管理', 'icon-order', 'qf/detail/list', '商品详情管理', '商品详情管理', '2018-10-18 11:04:14.605000', 'admin', '2018-10-18 11:04:14.605000', null, '26');
+INSERT INTO `sys_menu` VALUES ('27', '1', '6', '前台用户管理', 'icon-order', 'mall/user/list', '前台用户管理', '前台用户管理', '2018-10-18 16:02:03.539000', 'admin', '2018-10-18 16:02:03.539000', null, '2');
+INSERT INTO `sys_menu` VALUES ('28', '0', '0', '视频管理', 'icon-order', '', '视频管理', ' 视频管理父目录', '2018-10-21 11:43:56.000000', 'admin', '2018-10-21 14:44:07.000000', null, '16');
+INSERT INTO `sys_menu` VALUES ('29', '1', '28', '视频管理', 'icon-order', 'qf/video/list', '视频管理', '视频管理', '2018-10-21 14:46:25.354000', 'admin', '2018-10-21 14:46:25.354000', null, '17');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -592,6 +627,7 @@ CREATE TABLE `t_mall_purchase_good` (
   `create_time` datetime(6) NOT NULL,
   `update_by` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `update_time` datetime(6) DEFAULT NULL,
+  `is_invalid` int(11) DEFAULT NULL COMMENT '归档',
   PRIMARY KEY (`id`),
   KEY `idx_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -632,9 +668,65 @@ CREATE TABLE `t_mall_user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_uuid` (`uuid`) USING BTREE,
   KEY `idx_loginName` (`login_name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_mall_user
 -- ----------------------------
 INSERT INTO `t_mall_user` VALUES ('1', '59904f16955b46f9b981969b84d08f8a', null, null, '15160072758', 'e10adc3949ba59abbe56e057f20f883e', 'mobile_15160072758', null, null, '15160072758', '1', null, null, null, null, null, null, '手机用户', null, '2018-08-28 23:02:02.615000', null, '0', '0', '0');
+INSERT INTO `t_mall_user` VALUES ('2', 'ca3f24b7a67e486bb6c7f4adc1745e7b', null, null, '17805983342', 'e10adc3949ba59abbe56e057f20f883e', 'mobile_17805983342', null, null, '17805983342', '1', null, null, null, null, null, null, '手机用户', null, '2018-10-24 09:49:02.450000', null, '0', '1', '0');
+
+-- ----------------------------
+-- Table structure for t_user_chapter_completion
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_chapter_completion`;
+CREATE TABLE `t_user_chapter_completion` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(120) COLLATE utf8_bin NOT NULL,
+  `chapter_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `is_completed` tinyint(2) NOT NULL DEFAULT '0' COMMENT '默认未完成',
+  `create_time` datetime(6) NOT NULL,
+  `function_type` tinyint(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of t_user_chapter_completion
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_user_error_question
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_error_question`;
+CREATE TABLE `t_user_error_question` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `chapter_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `create_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_user_error_question
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_user_question
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_question`;
+CREATE TABLE `t_user_question` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(120) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `chapter_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `create_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_user_question
+-- ----------------------------
