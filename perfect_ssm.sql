@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQL
+Source Server         : mysql
 Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : perfect_ssm
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-10-25 20:54:27
+Date: 2018-10-26 17:29:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -79,9 +79,9 @@ CREATE TABLE `qf_chapter` (
 -- ----------------------------
 INSERT INTO `qf_chapter` VALUES ('12', '16', '7', 'CHA794152', '第一章、痛苦的B爆', '0', '1', '0', '1', '1', '2018-07-04 15:22:51.956000', 'admin', null, null, null);
 INSERT INTO `qf_chapter` VALUES ('13', '16', '7', 'CHA410382', '第一节、BBOX', '1', '0', '12', '0', '2', '2018-07-04 15:23:17.397000', 'admin', '2018-09-04 15:23:59.130000', 'admin', null);
-INSERT INTO `qf_chapter` VALUES ('14', '4', '8', 'CHA621395', '第一章', '0', '1', '0', '0', '12', '2018-09-04 15:19:56.761000', 'admin', null, null, null);
-INSERT INTO `qf_chapter` VALUES ('15', '4', '8', 'CHA507342', '第一节', '0', '0', '14', '0', '14', '2018-09-04 15:20:07.561000', 'admin', '2018-09-04 15:21:28.514000', 'admin', null);
-INSERT INTO `qf_chapter` VALUES ('16', '4', '9', 'CHA022032', '函数', '1', '0', '0', '1', '13', '2018-10-14 21:02:04.012000', 'admin', '2018-10-14 21:26:02.946000', 'admin', null);
+INSERT INTO `qf_chapter` VALUES ('14', '21', '9', 'CHA621395', '第一章.初识Java', '0', '1', '0', '0', '12', '2018-09-04 15:19:56.761000', 'admin', null, null, null);
+INSERT INTO `qf_chapter` VALUES ('15', '21', '9', 'CHA507342', '第一节.什么是Java', '0', '0', '14', '0', '14', '2018-09-04 15:20:07.561000', 'admin', '2018-09-04 15:21:28.514000', 'admin', null);
+INSERT INTO `qf_chapter` VALUES ('16', '21', '9', 'CHA022032', '第二节.Java安装', '1', '0', '0', '1', '13', '2018-10-14 21:02:04.012000', 'admin', '2018-10-14 21:26:02.946000', 'admin', null);
 
 -- ----------------------------
 -- Table structure for qf_course
@@ -403,7 +403,7 @@ CREATE TABLE `qf_vcloud_video` (
   `chapter_id` int(10) DEFAULT NULL,
   `description` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
   `vid` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
-  `orig_url` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
+  `orig_url` text COLLATE utf8mb4_bin,
   `download_orig_url` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   `status` int(10) DEFAULT NULL,
   `width` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
@@ -411,7 +411,7 @@ CREATE TABLE `qf_vcloud_video` (
   `video_name` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
   `type_name` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
   `duration` int(10) DEFAULT NULL,
-  `snapshot_url` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
+  `snapshot_url` text COLLATE utf8mb4_bin,
   `initial_size` bigint(20) DEFAULT NULL,
   `type_id` int(10) DEFAULT NULL,
   `duration_msec` int(10) DEFAULT NULL,
@@ -420,15 +420,13 @@ CREATE TABLE `qf_vcloud_video` (
   `update_time` datetime(6) DEFAULT NULL,
   `update_by` varchar(120) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of qf_vcloud_video
 -- ----------------------------
-INSERT INTO `qf_vcloud_video` VALUES ('2', '15', 'fds0222', '0', 'http://jechuang.com/53cd6e3d4bae42fe9cf2c676e0fcd00e/9335b9573f63484ebf70dcf6cf2575d9-234fd314681a3f0efd5c375a5ca12898-ld.m3u8', null, '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 'D:\\apache-tomcat-8.5.29\\webapps\\perfect-ssm\\videoImg\\1.jpg', '0', '0', '0', '2018-10-22 10:56:55.737000', 'admin', '2018-10-22 14:38:38.196000', 'admin');
-INSERT INTO `qf_vcloud_video` VALUES ('3', '16', '25', '0', 'http://jechuang.com/9fe78d0a70f34acb8aca8b2738b35d2a/6288284f62fd4d00bddd38f26fa858b1-52302a362eb59c7b7b6de48e23d936a4-ld.mp4', null, '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 'D:\\apache-tomcat-8.5.29\\webapps\\perfect-ssm\\videoImg\\1.jpg', '275794', '548050965', '0', '2018-10-22 11:23:56.208000', 'admin', null, null);
-INSERT INTO `qf_vcloud_video` VALUES ('4', '14', '54d5e', '0', 'http://jechuang.com/854219cd47e54dd3abdc1650d0453a03/847f7c7b95fd4d659ec8b50a40c4fae5-3221d0550b1bfd8e5e565dfb4141673c-ld.m3u8', null, '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 'D:\\apache-tomcat-8.5.29\\webapps\\perfect-ssm\\videoImg\\1.jpg', '303996', '548050965', '0', '2018-10-22 12:04:44.769000', 'admin', null, null);
-INSERT INTO `qf_vcloud_video` VALUES ('5', '12', 'tyuy', '0', 'http://jechuang.com/1971560e4dc94d2c85f0c808a1e52245/5919f5880b6e4478a51ebbb4837064a6-de74cfcbaa1cea3cdb96220641374301-ld.m3u8', null, '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 'http://jechuang.com/image/cover/0F5E4AE266BD4F1BBD01C715C249B6A8-6-2.png', '303808', '548050965', '0', '2018-10-22 12:16:01.159000', 'admin', null, null);
+INSERT INTO `qf_vcloud_video` VALUES ('6', '15', '什么是Java', 'a84dd52a327548a68af9906fdb4cf88d', 0x68747470733A2F2F6F7574696E2D61373533316532316431623831316538623565303030313633653036313233632E6F73732D636E2D7368616E676861692E616C6979756E63732E636F6D2F61383464643532613332373534386136386166393930366664623463663838642F32623736643838343637653134353963616539336131376263336634336661312D38393531383237343865373137303034616535383735646261323536373230612D6C642E6D70343F457870697265733D31353430353233363134264F53534163636573734B657949643D4C5441497832786A786D4979466F7634265369676E61747572653D5A7A526965596B4A38707046436D5364395356334825324225324239564B59253344, 'D:\\apache-tomcat-8.5.29\\webapps\\perfect-ssm\\video\\VID_20181018_163943.mp4', '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 0x687474703A2F2F6F7574696E2D61373533316532316431623831316538623565303030313633653036313233632E6F73732D636E2D7368616E676861692E616C6979756E63732E636F6D2F696D6167652F636F7665722F43303538433141423141323334363346413031323541313241414238464137352D362D322E706E673F457870697265733D31353430353233363134264F53534163636573734B657949643D4C5441497832786A786D4979466F7634265369676E61747572653D696761436A6766673825324252786D776569546F6B70767A7671616B41253344, '276112', '548050965', '0', '2018-10-26 10:13:26.295000', 'admin', null, null);
+INSERT INTO `qf_vcloud_video` VALUES ('7', '16', 'Java安装', '4a299f3ccb9e438bb35f72e6908555ff', 0x68747470733A2F2F6F7574696E2D61373533316532316431623831316538623565303030313633653036313233632E6F73732D636E2D7368616E676861692E616C6979756E63732E636F6D2F34613239396633636362396534333862623335663732653639303835353566662F66633430623665626561666234636537383263326164646664643535613634302D36636136383063636239656436386138313962366364666465383430633130382D6C642E6D70343F457870697265733D31353430353233383139264F53534163636573734B657949643D4C5441497832786A786D4979466F7634265369676E61747572653D3062634938545677314279723852447936726B76616B7871344E63253344, 'D:\\apache-tomcat-8.5.29\\webapps\\perfect-ssm\\video\\VID_20181018_163943.mp4', '1', '544', '960', 'VID_20181018_163943.mp4', '视频', '2', 0x687474703A2F2F6F7574696E2D61373533316532316431623831316538623565303030313633653036313233632E6F73732D636E2D7368616E676861692E616C6979756E63732E636F6D2F696D6167652F636F7665722F39423932334646393731313134374334393544424431304142393938323032452D362D322E706E673F457870697265733D31353430353233383139264F53534163636573734B657949643D4C5441497832786A786D4979466F7634265369676E61747572653D4A7254665877396948456932747137703437747772627852634830253344, '275837', '548050965', '0', '2018-10-26 10:16:51.072000', 'admin', null, null);
 
 -- ----------------------------
 -- Table structure for ssm_article
@@ -620,21 +618,22 @@ DROP TABLE IF EXISTS `t_mall_purchase_good`;
 CREATE TABLE `t_mall_purchase_good` (
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `user_id` varchar(64) COLLATE utf8_bin NOT NULL COMMENT '用户uuid',
-  `good_id` int(11) unsigned NOT NULL COMMENT '商品id',
-  `order_id` int(11) unsigned NOT NULL,
-  `is_sub` tinyint(2) NOT NULL DEFAULT '0' COMMENT '是否体验',
-  `create_by` varchar(64) COLLATE utf8_bin NOT NULL,
-  `create_time` datetime(6) NOT NULL,
+  `good_id` int(11) unsigned DEFAULT NULL COMMENT '商品id',
+  `order_id` int(11) unsigned DEFAULT NULL,
+  `is_sub` tinyint(2) DEFAULT '0' COMMENT '是否体验',
+  `create_by` varchar(64) COLLATE utf8_bin DEFAULT NULL,
+  `create_time` datetime(6) DEFAULT NULL,
   `update_by` varchar(64) COLLATE utf8_bin DEFAULT NULL,
   `update_time` datetime(6) DEFAULT NULL,
   `is_invalid` int(11) DEFAULT NULL COMMENT '归档',
   PRIMARY KEY (`id`),
   KEY `idx_user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_mall_purchase_good
 -- ----------------------------
+INSERT INTO `t_mall_purchase_good` VALUES ('1', 'ca3f24b7a67e486bb6c7f4adc1745e7b', '2', '2', '0', 'admin', '2018-10-25 14:21:50.000000', null, null, '0');
 
 -- ----------------------------
 -- Table structure for t_mall_user
@@ -689,7 +688,7 @@ CREATE TABLE `t_user_chapter_completion` (
   `create_time` datetime(6) NOT NULL,
   `function_type` tinyint(2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of t_user_chapter_completion
